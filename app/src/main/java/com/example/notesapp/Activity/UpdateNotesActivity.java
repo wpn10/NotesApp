@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProviders;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -53,6 +54,22 @@ public class UpdateNotesActivity extends AppCompatActivity {
             String notes = binding.upNotes.getText().toString();
             UpdateNotes(title, subtitle, notes);
         });
+        binding.shareNotes.setOnClickListener(v -> {
+            String title = binding.upTitle.getText().toString();
+            String subtitle = binding.upSubtitle.getText().toString();
+            String notes = binding.upNotes.getText().toString();
+            String fnlstr = "Title: "+title+"\n"+"Subtitle"+subtitle+"\n"+notes;
+            share(fnlstr);
+        });
+    }
+    private void share(String text){
+        Intent sendIntent = new Intent();
+        sendIntent.setAction(Intent.ACTION_SEND);
+        sendIntent.putExtra(Intent.EXTRA_TEXT, text);
+        sendIntent.setType("text/plain");
+        Intent shareIntent = Intent.createChooser(sendIntent, null);
+        startActivity(shareIntent);
+        finish();
     }
 
     private void UpdateNotes(String title, String subtitle, String notes) {

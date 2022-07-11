@@ -17,34 +17,36 @@ import com.example.notesapp.ViewModel.NotesViewModel;
 import com.example.notesapp.databinding.ActivityUpdateNotesBinding;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
 
     FloatingActionButton newNotesBtn;
     NotesViewModel notesViewModel;
     RecyclerView notesRecycler;
     NotesAdapter adapter;
-    ActivityUpdateNotesBinding binding;
-    int sid;
+    List<Notes> Lon;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityUpdateNotesBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
         setContentView(R.layout.activity_main);
         newNotesBtn = findViewById(R.id.newNotesBtn);
         notesRecycler = findViewById(R.id.notesRecycler);
         notesViewModel = ViewModelProviders.of(this).get(NotesViewModel.class);
 
-        sid = getIntent().getIntExtra("id", 0);
 
         newNotesBtn.setOnClickListener(v -> {
             startActivity(new Intent(MainActivity.this, InsertNotesActivity.class));
         });
         notesViewModel.getallNotes.observe(this, notes -> {
+            Lon = notes;
             notesRecycler.setLayoutManager(new GridLayoutManager(this,2));
+//            notesRecycler.setHasFixedSize(true);
             adapter = new NotesAdapter(MainActivity.this, notes);
             notesRecycler.setAdapter(adapter);
+
         });
+
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(simpleCallback);
         itemTouchHelper.attachToRecyclerView(notesRecycler);
     }
@@ -57,7 +59,8 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onSwiped (@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
             int iid = viewHolder.getAdapterPosition();
-            adapter.notifyItemRemoved(iid);
+            Notes notes = Lon.get(iid);
+            notesViewModel.deleteNote(notes.id);
         }
     };
 }

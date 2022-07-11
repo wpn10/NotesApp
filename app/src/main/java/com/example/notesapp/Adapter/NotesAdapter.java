@@ -13,12 +13,14 @@ import com.example.notesapp.Activity.UpdateNotesActivity;
 import com.example.notesapp.MainActivity;
 import com.example.notesapp.Model.Notes;
 import com.example.notesapp.R;
+import com.example.notesapp.ViewModel.NotesViewModel;
 
 import java.util.List;
 
 public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.notesViewholder> {
     MainActivity mainActivity;
     List<Notes> notes;
+    NotesViewModel notesViewModel;
     public NotesAdapter(MainActivity mainActivity, List<Notes> notes) {
         this.mainActivity = mainActivity;
         this.notes = notes;
@@ -52,6 +54,7 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.notesViewhol
     public int getItemCount() {
         return notes.size();
     }
+
 
     static class notesViewholder extends RecyclerView.ViewHolder {
         TextView title, subtitle, notesDate;
