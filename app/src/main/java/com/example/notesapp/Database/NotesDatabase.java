@@ -9,7 +9,7 @@ import androidx.room.RoomDatabase;
 import com.example.notesapp.Model.Notes;
 import com.example.notesapp.Dao.NotesDao;
 
-@Database(entities = {Notes.class}, version =1)
+@Database(entities = {Notes.class}, version =2)
 public abstract class NotesDatabase extends RoomDatabase {
 
     public abstract NotesDao notesDao();
