@@ -28,4 +28,16 @@ public class Notes {
     @ColumnInfo(name = "notes_priority")
     public String notesPriority;
 
+
+    @ColumnInfo(name = "image_path")
+    public String imagePath;
+
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
+    }
+
 }

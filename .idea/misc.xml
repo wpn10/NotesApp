@@ -7,11 +7,12 @@
         <entry key="app/src/main/res/drawable-v24/yellow_shape.xml" value="0.1985" />
         <entry key="app/src/main/res/drawable-v24/yes_delete.xml" value="0.1985" />
         <entry key="app/src/main/res/drawable/edit_txt_back.xml" value="0.1985" />
+        <entry key="app/src/main/res/drawable/ic_baseline_image_24.xml" value="0.1985" />
         <entry key="app/src/main/res/drawable/ic_baseline_share_24.xml" value="0.1985" />
         <entry key="app/src/main/res/drawable/no_delete.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/red_selector.xml" value="0.1985" />
         <entry key="app/src/main/res/drawable/red_shape.xml" value="0.1425" />
-        <entry key="app/src/main/res/layout/activity_insert_notes.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_insert_notes.xml" value="0.16688690185546873" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_splash_screen.xml" value="0.19610507246376813" />
         <entry key="app/src/main/res/layout/activity_update_notes.xml" value="0.19610507246376813" />

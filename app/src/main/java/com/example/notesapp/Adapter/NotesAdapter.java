@@ -1,6 +1,7 @@
 package com.example.notesapp.Adapter;
 
 import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,7 @@ import com.example.notesapp.MainActivity;
 import com.example.notesapp.Model.Notes;
 import com.example.notesapp.R;
 import com.example.notesapp.ViewModel.NotesViewModel;
+import com.makeramen.roundedimageview.RoundedImageView;
 
 import java.util.List;
 
@@ -38,7 +40,12 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.notesViewhol
         holder.title.setText(note.notesTitle);
         holder.subtitle.setText(note.notesSubtitle);
         holder.notesDate.setText(note.notesDates);
-
+        if(note.getImagePath()!=null){
+            holder.imageNote.setImageBitmap(BitmapFactory.decodeFile(note.getImagePath()));
+            holder.imageNote.setVisibility(View.VISIBLE);}
+        else {
+            holder.imageNote.setVisibility(View.GONE);
+        }
         holder.itemView.setOnClickListener(v -> {
             Intent intent = new Intent(mainActivity, UpdateNotesActivity.class);
             intent.putExtra("id", note.id);
@@ -47,6 +54,7 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.notesViewhol
             intent.putExtra("subtitle", note.notesSubtitle);
             mainActivity.startActivity(intent);
         });
+
 
     }
 
@@ -58,8 +66,10 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.notesViewhol
 
     static class notesViewholder extends RecyclerView.ViewHolder {
         TextView title, subtitle, notesDate;
+        RoundedImageView imageNote;
         public notesViewholder(@NonNull View itemView) {
             super(itemView);
+            imageNote = itemView.findViewById(R.id.imageNote);
             title = itemView.findViewById(R.id.notesTitle);
             subtitle = itemView.findViewById(R.id.notesSubtitle);
             notesDate = itemView.findViewById(R.id.notesDate);

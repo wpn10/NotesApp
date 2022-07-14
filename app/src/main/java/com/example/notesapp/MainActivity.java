@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     RecyclerView notesRecycler;
     NotesAdapter adapter;
     List<Notes> Lon;
+    List<Notes> lon;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
             notesRecycler.setAdapter(adapter);
 
         });
+
 
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(simpleCallback);
         itemTouchHelper.attachToRecyclerView(notesRecycler);

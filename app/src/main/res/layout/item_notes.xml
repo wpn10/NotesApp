@@ -42,7 +42,13 @@
                 android:text="Date"
                 android:textStyle="bold">
             </TextView>
-
+            <com.makeramen.roundedimageview.RoundedImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/imageNote"
+                android:adjustViewBounds="true"
+                android:layout_margin="6dp"
+                ></com.makeramen.roundedimageview.RoundedImageView>
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>
