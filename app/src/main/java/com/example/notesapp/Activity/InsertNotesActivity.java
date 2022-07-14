@@ -50,7 +50,7 @@ public class InsertNotesActivity extends AppCompatActivity {
             title = binding.notesTitle.getText().toString();
             subtitle = binding.notesSubtitle.getText().toString();
             notes = binding.notesData.getText().toString();
-            CreateNotes(title, subtitle, notes);
+            CreateNotes(title, subtitle, notes, selectedImagePath);
         });
         selectedImagePath = "";
         imageNote = findViewById(R.id.imageNote);
@@ -72,7 +72,7 @@ public class InsertNotesActivity extends AppCompatActivity {
         });
     }
 
-    private void CreateNotes(String title, String subtitle, String notes) {
+    private void CreateNotes(String title, String subtitle, String notes, String sip) {
         Date date = new Date();
         CharSequence sequence = DateFormat.getDateInstance().format(date.getTime());
         Notes notes1 = new Notes();
@@ -80,7 +80,8 @@ public class InsertNotesActivity extends AppCompatActivity {
         notes1.notesSubtitle = subtitle;
         notes1.notes = notes;
         notes1.notesDates = sequence.toString();
-        notes1.setImagePath(selectedImagePath);
+        notes1.setImagePath(sip);
+//        notes1.setImagePath(selectedImagePath);
         notesViewModel.insertNote(notes1);
         Toast.makeText(this, "Notes Created Successfully", Toast.LENGTH_SHORT).show();
         finish();

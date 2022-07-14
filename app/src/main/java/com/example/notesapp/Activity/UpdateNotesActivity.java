@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProviders;
 
 import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -27,11 +28,9 @@ import java.util.Date;
 public class UpdateNotesActivity extends AppCompatActivity {
 
     ActivityUpdateNotesBinding binding;
-    String stitle, ssubtitle, snotes;
+    String stitle, ssubtitle, snotes, simageNotes;
     int sid;
     NotesViewModel notesViewModel;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,16 +43,20 @@ public class UpdateNotesActivity extends AppCompatActivity {
         stitle = getIntent().getStringExtra("title");
         ssubtitle = getIntent().getStringExtra("subtitle");
         snotes = getIntent().getStringExtra("notes");
+        simageNotes = getIntent().getStringExtra("image");
         binding.upTitle.setText(stitle);
         binding.upSubtitle.setText(ssubtitle);
         binding.upNotes.setText(snotes);
+        binding.imageNote.setImageBitmap(BitmapFactory.decodeFile(simageNotes));
+
         binding.updateNotesBtn.setOnClickListener(view -> {
 
             String title = binding.upTitle.getText().toString();
             String subtitle = binding.upSubtitle.getText().toString();
             String notes = binding.upNotes.getText().toString();
-            UpdateNotes(title, subtitle, notes);
+            UpdateNotes(title, subtitle, notes,simageNotes);
         });
+
         binding.shareNotes.setOnClickListener(v -> {
             String title = binding.upTitle.getText().toString();
             String subtitle = binding.upSubtitle.getText().toString();
@@ -62,6 +65,7 @@ public class UpdateNotesActivity extends AppCompatActivity {
             share(fnlstr);
         });
     }
+
     private void share(String text){
         Intent sendIntent = new Intent();
         sendIntent.setAction(Intent.ACTION_SEND);
@@ -72,16 +76,16 @@ public class UpdateNotesActivity extends AppCompatActivity {
         finish();
     }
 
-    private void UpdateNotes(String title, String subtitle, String notes) {
+    private void UpdateNotes(String title, String subtitle, String notes, String simageNotes) {
         Date date = new Date();
         CharSequence sequence = DateFormat.getDateInstance().format(date.getTime());
-
         Notes updateNotes = new Notes();
         updateNotes.id = sid;
         updateNotes.notesTitle = title;
         updateNotes.notesSubtitle = subtitle;
         updateNotes.notes = notes;
         updateNotes.notesDates = sequence.toString();
+        updateNotes.imagePath = simageNotes;
 
         notesViewModel.updateNote(updateNotes);
         Toast.makeText(this, "Notes Updated Successfully", Toast.LENGTH_SHORT).show();

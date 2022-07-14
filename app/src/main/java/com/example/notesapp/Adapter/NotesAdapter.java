@@ -52,6 +52,7 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.notesViewhol
             intent.putExtra("notes", note.notes);
             intent.putExtra("title", note.notesTitle);
             intent.putExtra("subtitle", note.notesSubtitle);
+            intent.putExtra("image",note.imagePath);
             mainActivity.startActivity(intent);
         });
 
